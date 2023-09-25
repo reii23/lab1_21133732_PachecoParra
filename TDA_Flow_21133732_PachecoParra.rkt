@@ -44,3 +44,15 @@
                        (and (number? (get-id opt))
                             (number? (get-id option))
                             (= (get-id opt) (get-id option)))) options))))
+
+; 4. TDA Flow - modificador
+; nombre funcion: flow-add-option
+; Dom: Flow X Option
+; Rec: flow
+; Desc: Funcion modificadora para añadir opciones a un flujo
+; Req: No usar recursión La función también verifica que las opciones añadidas no se repitan en base al id de éstos
+
+(define (flow-add-option new-flow option)
+  (if (option-exists? option (get-options new-flow))
+      new-flow
+      (new-flow (get-id new-flow) (get-name-msg new-flow) (append (get-options new-flow) (list option)))))
