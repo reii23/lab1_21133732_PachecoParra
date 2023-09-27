@@ -29,3 +29,20 @@
          (append acc (list flow)))) ;sino añade el flujo a la lista acumulada.
    '()
    flows))
+
+; Selectores
+
+(define (get-chatbotID chatbot)
+  (car chatbot))
+
+(define (get-name-chatbot chatbot)
+  (cadr chatbot))
+
+(define (get-welcomeMessage chatbot)
+  (caddr chatbot))
+
+(define (get-startFlowId chatbot)
+  (cadddr chatbot))
+
+(define (get-flows chatbot)
+  (car (cddddr chatbot)))
