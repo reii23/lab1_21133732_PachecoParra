@@ -46,3 +46,20 @@
 
 (define (get-flows chatbot)
   (car (cddddr chatbot)))
+
+; 6. TDA chatbot - modificador
+; nombre funcion: chatbot-add-flow
+; Dom: chatbot X flow
+; Rec: chatbot
+; Desc: Función modificadora para añadir flujos a un chatbot.
+; Requirements: Usar recursión de cola o natural para añadir flujos al final de la lista de flujos. La función también verifica que los flujos añadidos no se repitan en base al id de éstos.
+; Recursion de cola, ya que utilizamos un aux llamado aux-flow-adder
+
+(define (chatbot-add-flow chatbot flow)
+  (let ([flows (get-flows chatbot)])
+    (define (aux-flow-adder flows flow)
+      (cond
+        [(null? flows) (list flow)]
+        [(flow-exists? flow flows) flows]
+        [else (append flows (list flow))]))
+    (list (get-chatbotID chatbot)(get-name-chatbot chatbot) (get-welcomeMessage chatbot) (get-startFlowId chatbot)(aux-flow-adder flows flow))))
