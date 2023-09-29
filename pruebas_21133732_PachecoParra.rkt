@@ -3,6 +3,7 @@
 (require "TDA_Flow_21133732_PachecoParra.rkt")
 (require "TDA_Option_21133732_PachecoParra.rkt")
 (require "TDA_Chatbot_21133732_PachecoParra.rkt")
+(require "TDA_System_21133732_PachecoParra.rkt")
 
 ; PRUEBAS
 
@@ -21,3 +22,5 @@
 ;(define cb11 (chatbot 0 "Asistente" "Bienvenido\n¿Qué te gustaría hacer?"  f12)) ; Ejemplo RFN 5 alternativo, para que RFN 6 sea correcto, este cb11 debe ser igual al cb11 de abajo
 
 (define cb11 (chatbot-add-flow cb0 f12)) ; probar este ejemplo y verificar que este y el de arriba son iguales, se puede comentar y descomentar para probarlo
+
+(define s0 (system "Chatbots Paradigmas" 0 cb0 cb0 cb0)) ; TDA 7 añade solo un cb0 TDA 7
