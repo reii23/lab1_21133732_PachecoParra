@@ -15,3 +15,23 @@
 (define (system name InitialChatbotCodeLink . chatbots)
   (let ([unique-chatbots (remove-duplicates chatbots)])
     (list name InitialChatbotCodeLink (current-seconds) unique-chatbots '() '() '())))
+
+; SELECTORES
+
+(define (get-system-name system)
+  (car system))
+
+(define (get-system-initialChatbotCodeLink system)
+  (cadr system))
+
+(define (get-system-chatbots system)
+  (cadddr system))
+
+(define (get-system-creation-time system)
+  (caddr system))
+
+(define (get-system-logged-in-user system)
+  (cadr (cddddr system)))
+
+(define (get-system-chat-history system)
+  (caddr (cddddr system)))
