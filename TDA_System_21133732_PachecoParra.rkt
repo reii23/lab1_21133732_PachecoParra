@@ -35,3 +35,12 @@
 
 (define (get-system-chat-history system)
   (caddr (cddddr system)))
+
+; 8. TDA system - modificador
+; Dom: system x chatbot
+; Rec: system
+; Desc: Función modificadora para añadir chatbots a un sistema
+
+; Función auxiliar para verificar si un chatbot con un ID específico ya existe en una lista de chatbots
+(define (chatbot-exists? chatbot-id chatbots)
+  (not (null? (filter (lambda (cb) (= (get-chatbotID cb) chatbot-id)) chatbots))))
