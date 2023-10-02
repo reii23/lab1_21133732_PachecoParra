@@ -23,4 +23,6 @@
 
 (define cb11 (chatbot-add-flow cb0 f12)) ; probar este ejemplo y verificar que este y el de arriba son iguales, se puede comentar y descomentar para probarlo
 
-(define s0 (system "Chatbots Paradigmas" 0 cb0 cb0 cb0)) ; TDA 7 añade solo un cb0 TDA 7
+(define s0 (system "Chatbots Paradigmas" 0 cb0 cb0 cb0)) ; RFN 7 añade solo un cb0 RFN 7
+
+(define s1 (system-add-chatbot s0 cb0)) ; RFN 8

@@ -44,3 +44,17 @@
 ; Función auxiliar para verificar si un chatbot con un ID específico ya existe en una lista de chatbots
 (define (chatbot-exists? chatbot-id chatbots)
   (not (null? (filter (lambda (cb) (= (get-chatbotID cb) chatbot-id)) chatbots))))
+
+(define (system-add-chatbot system chatbot)
+  (let ((existing-chatbots (get-system-chatbots system))
+        (chatbot-id (get-chatbotID chatbot)))
+    (if (not (chatbot-exists? chatbot-id existing-chatbots))
+        (let ((updated-chatbots (remove-duplicates (append existing-chatbots (list chatbot)))))
+            (list (get-system-name system)
+                  (get-system-initialChatbotCodeLink system)
+                  (get-system-creation-time system)
+                  updated-chatbots
+                  (car (cddddr system))
+                  (cadr (cddddr system))
+                  (get-system-chat-history system)))
+        system)))
