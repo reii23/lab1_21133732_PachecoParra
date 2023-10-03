@@ -24,17 +24,20 @@
 (define (get-system-initialChatbotCodeLink system)
   (cadr system))
 
-(define (get-system-chatbots system)
-  (cadddr system))
-
 (define (get-system-creation-time system)
   (caddr system))
 
+(define (get-system-chatbots system)
+  (cadddr system))
+
+(define (get-existing-users system)
+  (list-ref system 4))
+
 (define (get-system-logged-in-user system)
-  (cadr (cddddr system)))
+  (list-ref system 5))
 
 (define (get-system-chat-history system)
-  (caddr (cddddr system)))
+  (list-ref system 6))
 
 ; 8. TDA system - modificador
 ; Dom: system x chatbot
@@ -53,8 +56,31 @@
             (list (get-system-name system)
                   (get-system-initialChatbotCodeLink system)
                   (get-system-creation-time system)
-                  updated-chatbots
-                  (car (cddddr system))
-                  (cadr (cddddr system))
+                  (get-system-chatbots system)
+                  (get-existing-users system)
+                  (get-system-logged-in-user system)
                   (get-system-chat-history system)))
         system)))
+
+; register
+; 9. TDA system - modificador
+; Dom: system x user (string)
+; Rec: system
+; Desc: Función modificadora para añadir usuarios a un sistema.
+; Req: Debe verificar que el usuario no exista en el sistema a partir del id de éste, que está dado por su nombre de usuario (String).
+; Idea: crear una nueva funcion la cual reciba el system y el user y lo añada en el sistema en una nueva lista donde se vayan agregando los usuarios.
+
+; Función auxiliar para verificar si un usuario ya existe en una lista de usuarios
+(define (user-exists? user users)
+  (member user users))
+
+(define (system-add-user system user)
+    (if (not (member user (get-existing-users system)))
+        (list (get-system-name system)
+              (get-system-initialChatbotCodeLink system)
+              (get-system-creation-time system)
+              (get-system-chatbots system)
+              (cons user (get-existing-users system))
+              (get-system-logged-in-user system)
+              (get-system-chat-history system))
+        system))

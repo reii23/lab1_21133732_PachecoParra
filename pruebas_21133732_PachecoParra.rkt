@@ -26,3 +26,9 @@
 (define s0 (system "Chatbots Paradigmas" 0 cb0 cb0 cb0)) ; RFN 7 añade solo un cb0 RFN 7
 
 (define s1 (system-add-chatbot s0 cb0)) ; RFN 8
+
+; TDA 9
+(define s2 (system-add-user s1 "user1"))
+(define s3 (system-add-user s2 "user2"))
+(define s4 (system-add-user s3 "user2")) ;solo añade un ocurrencia de user2
+(define s5 (system-add-user s4 "user3"))
