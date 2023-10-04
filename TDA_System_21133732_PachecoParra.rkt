@@ -4,6 +4,8 @@
 (require "TDA_Chatbot_21133732_PachecoParra.rkt")
 (require "TDA_Flow_21133732_PachecoParra.rkt")
 (require "TDA_Option_21133732_PachecoParra.rkt")
+(require "TDA_User_21133732_PachecoParra.rkt")
+
 (provide(all-defined-out))
 
 ; 7. TDA system - constructor

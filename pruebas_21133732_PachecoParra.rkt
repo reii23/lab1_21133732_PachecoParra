@@ -30,5 +30,5 @@
 ; TDA 9
 (define s2 (system-add-user s1 "user1"))
 (define s3 (system-add-user s2 "user2"))
-(define s4 (system-add-user s3 "user2")) ;solo añade un ocurrencia de user2
-(define s5 (system-add-user s4 "user3"))
+(define s4 (system-add-user s3 "user2")) ;solo añade un ocurrencia de user2 (no permite logear dos usuarios iguales)
+(define s5 (system-add-user s4 "user3")) ; se agrega user 3
