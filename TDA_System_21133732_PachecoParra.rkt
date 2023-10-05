@@ -86,3 +86,23 @@
               (get-system-logged-in-user system)
               (get-system-chat-history system))
         system))
+
+; 10. TDA System
+; Dom: system x user (string)
+; Rec: system
+; Desc: Función que permite iniciar sesión en el sistema.
+; Req: solo pueden iniciar sesión usuarios registrados mediante system-add-user
+; No se puede iniciar sesión si ya existe una sesión iniciada por otro usuario-
+
+(define (system-login system user)
+  (let ((get-existing-users (get-existing-users system))
+        (logged-in-user (get-system-logged-in-user system)))
+    (if (and (null? logged-in-user) (member user get-existing-users))
+        (list (get-system-name system)
+              (get-system-initialChatbotCodeLink system)
+              (get-system-creation-time system)
+              (get-system-chatbots system)
+              get-existing-users
+              (list user)
+              (get-system-chat-history system))
+        system)))
