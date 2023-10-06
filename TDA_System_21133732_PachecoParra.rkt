@@ -106,3 +106,19 @@
               (list user)
               (get-system-chat-history system))
         system)))
+
+; logout
+; 11. TDA System:
+; nombre función: system-logout
+; Desc: Función que permite cerrar una sesión abiertaus
+; Dom: system
+; Rec: system
+(define (system-logout system)
+  (list (get-system-name system)
+        (get-system-initialChatbotCodeLink system)
+        (get-system-creation-time system)
+        (get-system-chatbots system)
+        (get-existing-users system)
+        '()
+        (get-system-chat-history system)
+        ))
