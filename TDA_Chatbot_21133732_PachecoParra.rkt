@@ -1,7 +1,5 @@
 #lang racket/base
 
-; TDA_Chatbot_21133732_PachecoParra
-
 (provide(all-defined-out))
 
 (require "TDA_Flow_21133732_PachecoParra.rkt")
@@ -10,51 +8,81 @@
 ; 5. TDA Chatbot - constructor
 ; nombre funcion: chatbot
 ; Dom: chatbotID (int) X name (String) X welcomeMessage (String) X startFlowId (int)  X  flows*
-; Rec: chatbot
-; Desc: Funcion constructora de un chatbot
+; Recorido: list
+; Recursion: no aplica
+; Descripción: Funcion constructora de un chatbot
 
 (define (chatbot chatbotID name welcomeMessage startFlowId . flows)
   (list chatbotID name welcomeMessage startFlowId (remove-duplicates flows)))
 
-; Función auxiliar para verificar si un flujo ya existe en una lista dada de flujos.
-(define (flow-exists? flow flows)
-  (not (null? (filter (lambda (fl) (= (get-id fl) (get-id flow))) flows)))) ; Compara los ID de los flujos.
-
-; Función auxiliar para eliminar flujos duplicados basándose en su ID.
+; Nombre de la función: remove-duplicates
+; Dominio: list
+; Recorrido: list
+; Recursión: cola
+; Descripción: función que elimina los flujos duplicados en base a su id
 (define (remove-duplicates flows)
   (foldl 
-   (lambda (flow acc) ; Toma un flujo y la lista acc
-     (if (flow-exists? flow acc) ; Si el flujo ya existe en la lista acc
-         acc ; devuelve la lista acc sin cambios
-         (append acc (list flow)))) ;sino añade el flujo a la lista acumulada.
+   (lambda (flow acc)
+     (if (flow-exists? flow acc)
+         acc
+         (append acc (list flow))))
    '()
    flows))
 
-; Selectores
-
+; Nombre de la función:get-chatbotID
+; Dominio: list
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: función que selecciona el id del chatbot
 (define (get-chatbotID chatbot)
   (car chatbot))
 
+; Nombre de la función:get-name-chatbot
+; Dominio: list
+; Recorrido: string
+; Recursión: no aplica
+; Descripción: función que seleciona el nombre del chatbot 
 (define (get-name-chatbot chatbot)
   (cadr chatbot))
 
+; Nombre de la función: get-welcomeMessage
+; Dominio: list
+; Recorrido: string
+; Recursión: no aplica
+; Descripción: función que seleciona el mensaje de bienvenida del chatbot
 (define (get-welcomeMessage chatbot)
   (caddr chatbot))
 
+; Nombre de la función:get-startFlowId
+; Dominio: list
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: función que seleciona el id de flujo inicial del chatbot
 (define (get-startFlowId chatbot)
   (cadddr chatbot))
 
+; Nombre de la función:get-flows
+; Dominio: list
+; Recorrido: list
+; Recursión: no aplica
+; Descripción: función que seleciona los flujos del chatbot
 (define (get-flows chatbot)
   (car (cddddr chatbot)))
 
-; 6. TDA chatbot - modificador
-; nombre funcion: chatbot-add-flow
-; Dom: chatbot X flow
-; Rec: chatbot
-; Desc: Función modificadora para añadir flujos a un chatbot.
-; Requirements: Usar recursión de cola o natural para añadir flujos al final de la lista de flujos. La función también verifica que los flujos añadidos no se repitan en base al id de éstos.
-; Recursion de cola, ya que utilizamos un aux llamado aux-flow-adder
+; Nombre de la función: flow-exists?
+; Dominio: list x list
+; Recorrido: bool
+; Recursión: no aplica
+; Descripción: Función de pertenencia para verificar si un flujo ya existe en una lista dada de flujos. dado su id
+(define (flow-exists? flow flows)
+  (not (null? (filter (lambda (fl) (= (get-id fl) (get-id flow))) flows))))
 
+; 6. TDA chatbot - modificador
+; Nombre función: chatbot-add-flow
+; Dominio: list X list
+; Recorrido: list
+; Recursión: cola
+; Descripción: Función modificadora para añadir flujos a un chatbot.
 (define (chatbot-add-flow chatbot flow)
   (let ([flows (get-flows chatbot)])
     (define (aux-flow-adder flows flow)

@@ -4,6 +4,8 @@
 (require "TDA_Option_21133732_PachecoParra.rkt")
 (require "TDA_Chatbot_21133732_PachecoParra.rkt")
 (require "TDA_System_21133732_PachecoParra.rkt")
+(require "TDA_ChatHistory_21133732_PachecoParra.rkt")
+(require "TDA_User_21133732_PachecoParra.rkt")
 
 ; PRUEBAS
 

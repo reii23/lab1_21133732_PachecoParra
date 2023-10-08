@@ -10,46 +10,100 @@
 
 ; 7. TDA system - constructor
 ; Dom: name (string) X initialChatbotCodeLink (int) X chatbot* (puede recibir 0 o más chatbots)
-; Rec: system
-; Desc: Función constructora de un sistema de chatbots. Deja registro de la fecha de creación.
+; Recorrido: list
+; Recursión: no aplica
+; Descripción: Función constructora de un sistema de chatbots. Deja registro de la fecha de creación.
 
-; Constructor con listas vacías para usuarios y usuarios conectados
 (define (system name InitialChatbotCodeLink . chatbots)
   (let ([unique-chatbots (remove-duplicates chatbots)])
     (list name InitialChatbotCodeLink (current-seconds) unique-chatbots '() '() '())))
 
-; SELECTORES
-
+; Nombre de la función: get-system-name
+; Dominio: system
+; Recorrido: string
+; Recursión: no aplica
+; Descripción: función que obtiene el nombre del sistema
 (define (get-system-name system)
   (car system))
 
+; Nombre de la función: get-system-initialChatbotCodeLink
+; Dominio: system
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: función que obtiene el codigo inicial de chatbot
 (define (get-system-initialChatbotCodeLink system)
   (cadr system))
 
+; Nombre de la función: get-system-creation-time
+; Dominio: system
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: función que obtiene la hora de creacion del sistema
 (define (get-system-creation-time system)
   (caddr system))
 
+; Nombre de la función: get-system-chatbots
+; Dominio: system
+; Recorrido: list
+; Recursión: no aplica
+; Descripción: función que obtiene la lista de chatbots en el sistema
 (define (get-system-chatbots system)
   (cadddr system))
 
+; Nombre de la función: get-existing-users
+; Dominio: system
+; Recorrido: list
+; Recursión: no aplica
+; Descripción: función que obtiene la lista de usuarios registrados
 (define (get-existing-users system)
   (list-ref system 4))
 
+; Nombre de la función: get-logged-in-user
+; Dominio: system
+; Recorrido: list
+; Recursión: no aplica
+; Descripción: función que obtiene la lista de usuarios logueados
 (define (get-system-logged-in-user system)
   (list-ref system 5))
 
+; Nombre de la función: get-system-chat-history
+; Dominio: system
+; Recorrido: list
+; Recursión: no aplica
+; Descripción: función que obtiene la lista de usuarios logueados
 (define (get-system-chat-history system)
   (list-ref system 6))
 
-; 8. TDA system - modificador
-; Dom: system x chatbot
-; Rec: system
-; Desc: Función modificadora para añadir chatbots a un sistema
+; Nombre de la función: get-current-id-chatbot
+; Dominio: system
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: función que obtiene el id del chat actual
+(define (get-current-id-chatbot system)
+  (caar (get-system-chat-history system)))
 
-; Función auxiliar para verificar si un chatbot con un ID específico ya existe en una lista de chatbots
+; Nombre de la función: chatbot-exists?
+; Dominio: id-chatbot (int) x chatbots (list)
+; Recorrido: bool
+; Recursión: no aplica
+; Descripción: Función selectora para verificar si un chatbot con un ID específico ya existe en una lista de chatbot
 (define (chatbot-exists? chatbot-id chatbots)
   (not (null? (filter (lambda (cb) (= (get-chatbotID cb) chatbot-id)) chatbots))))
 
+; Nombre de la función: user-exists?
+; Dominio: id-chatbot (int) x chatbots (list)
+; Recorrido: bool
+; Recursión: no aplica
+; Descripción: Función selectora para verificar si un usuario ya existe en una lista de usuarios
+(define (user-exists? user users)
+  (member user users))
+
+; 8. TDA system - modificador
+; Nombre de la función: system-add-chatbot
+; Dominio: system x chatbot
+; Recorrido: system
+; Recursión: no aplica
+; Descripción: Función modificadora para añadir chatbots a un sistema
 (define (system-add-chatbot system chatbot)
   (let ((existing-chatbots (get-system-chatbots system))
         (chatbot-id (get-chatbotID chatbot)))
@@ -64,18 +118,12 @@
                   (get-system-chat-history system)))
         system)))
 
-; register
 ; 9. TDA system - modificador
-; Dom: system x user (string)
-; Rec: system
-; Desc: Función modificadora para añadir usuarios a un sistema.
-; Req: Debe verificar que el usuario no exista en el sistema a partir del id de éste, que está dado por su nombre de usuario (String).
-; Idea: crear una nueva funcion la cual reciba el system y el user y lo añada en el sistema en una nueva lista donde se vayan agregando los usuarios.
-
-; Función auxiliar para verificar si un usuario ya existe en una lista de usuarios
-(define (user-exists? user users)
-  (member user users))
-
+; Nombre de la función: system-add-user
+; Dominio: system x user (string)
+; Recorrido: system
+; Recursión: no aplica
+; Descripción: Función modificadora para añadir usuarios a un sistema.
 (define (system-add-user system user)
     (if (not (member user (get-existing-users system)))
         (list (get-system-name system)
@@ -88,11 +136,11 @@
         system))
 
 ; 10. TDA System
-; Dom: system x user (string)
-; Rec: system
-; Desc: Función que permite iniciar sesión en el sistema.
-; Req: solo pueden iniciar sesión usuarios registrados mediante system-add-user
-; No se puede iniciar sesión si ya existe una sesión iniciada por otro usuario-
+; Nombre de la función: system-login
+; Dominio: system x user (string)
+; Recorrido: system
+; Recursión: no aplica
+; Descripción: Función que permite iniciar sesión en el sistema.
 
 (define (system-login system user)
   (let ((get-existing-users (get-existing-users system))
@@ -107,12 +155,12 @@
               (get-system-chat-history system))
         system)))
 
-; logout
 ; 11. TDA System:
-; nombre función: system-logout
-; Desc: Función que permite cerrar una sesión abiertaus
-; Dom: system
-; Rec: system
+; Nombre de la función: system-logout
+; Dominio: system
+; Recorrido: system
+; Recursión: no aplica
+; Desc: Función que permite cerrar una sesión abierta en el sistema.
 (define (system-logout system)
   (list (get-system-name system)
         (get-system-initialChatbotCodeLink system)
@@ -122,3 +170,86 @@
         '()
         (get-system-chat-history system)
         ))
+; Nombre de la función: search-chatbot
+; Dominio: list-chatbot x message (string)
+; Recorrido: list
+; Recursión: natural
+; Descripción: Función que permite obtener un chatbot según el mensaje entregado por el usuario
+(define (search-chatbot list-chatbot message)
+  (if (= message (caar list-chatbot))
+      (car list-chatbot)
+      (search-chatbot (cdr list-chatbot) message)))
+
+; Nombre de la función: search-chatbot-flow
+; Dominio: list-chatbot x message (string)
+; Recorrido: list
+; Recursión: natural
+; Descripción: Función que permite obtener un flujo según el mensaje entregado por el usuario
+(define (search-chatbot-flow list-chatbot message)
+  (if (= message (caar list-chatbot))
+      (list-ref (car list-chatbot) 4)
+      (search-chatbot-flow (cdr list-chatbot) message)))
+
+; Nombre de la función: search-chatbot-chat
+; Dominio: list x message (string)
+; Recorrido: list
+; Recursión: natural
+; Descripción: Función que permite obtener el chat de un chatbot
+(define (search-chatbot-chat chat-h message)
+  (define (search-option options message)
+    (if (= (caar options) message)
+        (list (get-system-initialChatbotCodeLink (car options))
+              (get-chatbotcodelink (car options)))
+        "no encontrado"))
+  (search-option (caddr (list-ref (car chat-h) 4)) message))
+
+; 12. system-talk-rec
+; Nombre de la función: system-talk-rec
+; Dominio: system X message
+; Recorrido: system
+; Recursión: natural
+; Descripción: simula la interacción con un chatbot
+
+(define (system-talk-rec system message)
+  (if (null? (get-system-logged-in-user system))
+      system
+      (if (null? (get-system-chat-history system))
+          (list (get-system-name system)
+                (get-system-initialChatbotCodeLink system)
+                (get-system-creation-time system)
+                (get-system-chatbots system)
+                (get-system-logged-in-user system)
+                (get-existing-users system)
+                (cons (search-chatbot (get-system-chatbots system) 0) (get-system-chat-history system)))
+          (list (get-system-name system)
+                (get-system-initialChatbotCodeLink system)
+                (get-system-creation-time system)
+                (get-system-chatbots system)
+                (get-system-logged-in-user system)
+                (get-existing-users system)
+                (cons (search-chatbot-flow (get-system-chatbots system) (string->number message)) (get-system-chat-history system))))))
+
+; Nombre de la función: search-chatbot-id
+; Dominio: system
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: obtener el chatbot id actual
+(define (current-chatbot-id system)
+  (caar(get-system-chat-history system)))
+
+; Nombre de la función: search-flow-id
+; Dominio: system
+; Recorrido: int
+; Recursión: no aplica
+; Descripción:; obtener el flujo id actual
+(define (current-flow-id system)
+  (cadddr (car (get-system-chat-history system))))
+
+; Nombre de la función: list-id
+; Dominio: chatbot-id (int) flow-id (int)
+; Recorrido: int
+; Recursión: no aplica
+; Descripción: crea una lista con el flujo-id y chatbot-id actual
+(define (lista-id chatbot-id flow-id)
+  (list (current-chatbot-id system)
+        (current-flow-id system)))
