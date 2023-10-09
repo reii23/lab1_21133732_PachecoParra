@@ -51,7 +51,7 @@
 (define (get-options flow)
   (caddr flow))
 
-; Nombre de la función: get-options
+; Nombre de la función: option-exists?
 ; Dominio: list x list
 ; Recorrido: bool
 ; Recursión: no aplica

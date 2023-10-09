@@ -1,5 +1,7 @@
 #lang racket
 
+; Script de pruebas 1 del laboratorio extraído del Google Docs de Paradigmas de Programación 2023/2
+
 (require "TDA_Flow_21133732_PachecoParra.rkt")
 (require "TDA_Option_21133732_PachecoParra.rkt")
 (require "TDA_Chatbot_21133732_PachecoParra.rkt")

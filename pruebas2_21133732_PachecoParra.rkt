@@ -1,5 +1,7 @@
 #lang racket/base
 
+; Script de pruebas 2 del laboratorio extraído del Google Docs de Paradigmas de Programación 2023/2
+
 (require "TDA_Flow_21133732_PachecoParra.rkt")
 (require "TDA_Option_21133732_PachecoParra.rkt")
 (require "TDA_Chatbot_21133732_PachecoParra.rkt")
@@ -52,13 +54,10 @@
 (define s8 (system-login s7 "user2"))
 (define s9 (system-logout s8))
 (define s10 (system-login s9 "user2"))
-;las siguientes interacciones deben funcionar de igual manera con system-talk-rec  o system-talk-norec 
+;las siguientes interacciones deben funcionar de igual manera con system-talk-rec o system-talk-norec 
 (define s11 (system-talk-rec s10 "hola"))
 (define s12 (system-talk-rec s11 "1"))
 (define s13 (system-talk-rec s12 "1"))
-;(define s14 (system-talk-rec s13 "Museo"))
-;(define s15 (system-talk-rec s14 "1"))
-;(define s16 (system-talk-rec s15 "3"))
-;(define s17 (system-talk-rec s16 "5"))
-;(display (system-synthesis s17 "user2"))
-;system-simulate s0 5 32131)
+(define s14 (system-talk-norec s10 "hola"))
+(define s15 (system-talk-norec s11 "1"))
+(define s16 (system-talk-norec s12 "1"))

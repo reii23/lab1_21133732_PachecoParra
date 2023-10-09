@@ -8,7 +8,7 @@
 ; 5. TDA Chatbot - constructor
 ; nombre funcion: chatbot
 ; Dom: chatbotID (int) X name (String) X welcomeMessage (String) X startFlowId (int)  X  flows*
-; Recorido: list
+; Recorido: chatbot
 ; Recursion: no aplica
 ; Descripción: Funcion constructora de un chatbot
 
@@ -30,7 +30,7 @@
    flows))
 
 ; Nombre de la función:get-chatbotID
-; Dominio: list
+; Dominio: chatbot
 ; Recorrido: int
 ; Recursión: no aplica
 ; Descripción: función que selecciona el id del chatbot
@@ -38,7 +38,7 @@
   (car chatbot))
 
 ; Nombre de la función:get-name-chatbot
-; Dominio: list
+; Dominio: chatbot
 ; Recorrido: string
 ; Recursión: no aplica
 ; Descripción: función que seleciona el nombre del chatbot 
@@ -46,7 +46,7 @@
   (cadr chatbot))
 
 ; Nombre de la función: get-welcomeMessage
-; Dominio: list
+; Dominio: chatbot
 ; Recorrido: string
 ; Recursión: no aplica
 ; Descripción: función que seleciona el mensaje de bienvenida del chatbot
@@ -54,7 +54,7 @@
   (caddr chatbot))
 
 ; Nombre de la función:get-startFlowId
-; Dominio: list
+; Dominio: chatbot
 ; Recorrido: int
 ; Recursión: no aplica
 ; Descripción: función que seleciona el id de flujo inicial del chatbot
@@ -62,7 +62,7 @@
   (cadddr chatbot))
 
 ; Nombre de la función:get-flows
-; Dominio: list
+; Dominio: chatbot
 ; Recorrido: list
 ; Recursión: no aplica
 ; Descripción: función que seleciona los flujos del chatbot
@@ -70,7 +70,7 @@
   (car (cddddr chatbot)))
 
 ; Nombre de la función: flow-exists?
-; Dominio: list x list
+; Dominio: chatbot x flow
 ; Recorrido: bool
 ; Recursión: no aplica
 ; Descripción: Función de pertenencia para verificar si un flujo ya existe en una lista dada de flujos. dado su id
@@ -79,7 +79,7 @@
 
 ; 6. TDA chatbot - modificador
 ; Nombre función: chatbot-add-flow
-; Dominio: list X list
+; Dominio: chatbot x flow
 ; Recorrido: list
 ; Recursión: cola
 ; Descripción: Función modificadora para añadir flujos a un chatbot.
