@@ -1,0 +1,31 @@
+------------------RNF--------------------
+
+1 RNF1: Autoevaluación
+1 RNF2: Lenguaje
+1 RNF3: Versión
+1 RNF4: Standard
+1 RNF5: No variables
+1 RNF6: Documentación
+1 RNF7: Dom->Rec
+1 RNF8: Organización
+1 RNF9: Historial
+1 RFN10: Script de pruebas
+1 RFN11: Prerequisitos
+
+-----------------RFN----------------------
+
+1 RFN1: TDAs
+1 RFN2: option
+1 RFN3: flow
+1 RFN4: flow-add-option 
+1 RFN5: chatbot
+1 RFN6: chatbot-add-flow 
+1 RFN7: system
+1 RFN8: system-add-chatbot
+1 RFN9: system-add-user
+1 RFN10: system-login
+1 RFN11: system-logout
+0.5 RFN12: system-talk-rec
+0.5 RFN13: system-talk-no-rec
+0 RFN14: system-synthesis
+0 RFN15: system-simulate
